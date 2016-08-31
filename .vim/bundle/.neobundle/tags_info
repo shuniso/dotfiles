@@ -1,0 +1,6 @@
+neobundle.vim
+neomru.vim
+nerdtree
+tcomment_vim
+unite.vim
+vim-fugitive

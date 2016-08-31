@@ -1,0 +1,11 @@
+[user]
+	email = user@example.com
+	name  = shuniso
+[core]
+	editor = vim -c \"set fenc=utf-8\"
+	precomposeunicode = true
+	quotepath = false
+[color]
+	diff = auto
+	status = auto
+	branch = auto
