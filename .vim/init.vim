@@ -141,8 +141,15 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   NeoBundleFetch 'Shougo/neobundle.vim'
 
   " NeoBundle List
-  "NeoBundle 'Shougo/unite.vim'
-  NeoBundle 'Shougo/vimproc'
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'Shougo/vimproc', {
+    \ 'build' : {
+      \ 'windows' : 'make -f make_mingw32.mak',
+      \ 'cygwin' : 'make -f make_cygwin.mak',
+      \ 'mac' : 'make -f make_mac.mak',
+      \ 'unix' : 'make -f make_unix.mak',
+    \ },
+  \ }
 
   if has('lua') && v:version >= 703
     NeoBundleLazy 'Shougo/neocomplete.vim'
@@ -243,6 +250,8 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   "NeoBundle 'junegunn/fzf.vim'
   "NeoBundle 'fatih/vim-hclfmt'
 
+  NeoBundle 'slashmili/alchemist.vim'
+  NeoBundle 'elixir-lang/vim-elixir'
 
   " Japanese help
   "NeoBundle 'vim-jp/vimdoc-ja'
@@ -323,3 +332,31 @@ filetype plugin indent on
 
 
 
+
+
+" Library: in vimrc {{{1
+" Functions that are described in this section is general functions.
+" It is not general, for example, functions used in a dedicated purpose
+" has been described in the setting position.
+"==============================================================================
+
+" func s:bundle() {{{2
+function! s:bundled(bundle)
+  if !isdirectory($VIMBUNDLE)
+    return s:false
+  endif
+  if stridx(&runtimepath, $NEOBUNDLEPATH) == -1
+    return s:false
+  endif
+
+  if a:bundle ==# 'neobundle.vim'
+    return s:true
+  else
+    return neobundle#is_installed(a:bundle)
+  endif
+endfunction
+
+
+function! s:neobundled(bundle)
+  return s:bundled(a:bundle) && neobundle#tap(a:bundle)
+endfunction
