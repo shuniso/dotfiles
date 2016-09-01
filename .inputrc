@@ -3,7 +3,7 @@ set editing-mode vi
 set keymap vi-insert
 
 # チルダをタブにより展開
-set expand-tilde on
+# set expand-tilde on
 
 # 日本語関係
 set input-meta on
@@ -19,3 +19,13 @@ set horizontal-scroll-mode on
 # ヒストリー補完機能を Ctrl+N, Ctrl+P に割り当てる
 "\C-p": history-search-backward
 "\C-n": history-search-forward
+
+"\C-j": vi-movement-mode
+
+"\C-l": clear-screen
+
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+
+"\C-b": backward-char
+"\C-f": forward-char
