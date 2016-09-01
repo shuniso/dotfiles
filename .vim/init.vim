@@ -65,28 +65,8 @@ endif
 let $VIMBUNDLE = $DOTVIM . '/bundle'
 let $NEOBUNDLEPATH = $VIMBUNDLE . '/neobundle.vim'
 
-" vimrc management variables
-let s:vimrc_plugin_on                  = get(g:, 'vimrc_plugin_on',                  s:true)
-let s:vimrc_suggest_neobundleinit      = get(g:, 'vimrc_suggest_neobundleinit',      s:true)
-let s:vimrc_goback_to_eof2bof          = get(g:, 'vimrc_goback_to_eof2bof',          s:false)
-let s:vimrc_save_window_position       = get(g:, 'vimrc_save_window_position',       s:false)
-let s:vimrc_restore_cursor_position    = get(g:, 'vimrc_restore_cursor_position',    s:true)
-let s:vimrc_statusline_manually        = get(g:, 'vimrc_statusline_manually',        s:true)
-let s:vimrc_add_execute_perm           = get(g:, 'vimrc_add_execute_perm',           s:false)
-let s:vimrc_colorize_statusline_insert = get(g:, 'vimrc_colorize_statusline_insert', s:true)
-let s:vimrc_manage_rtp_manually        = get(g:, 's:vimrc_manage_rtp_manually',      s:false)
-let s:vimrc_auto_cd_file_parentdir     = get(g:, 's:vimrc_auto_cd_file_parentdir',   s:true)
-let s:vimrc_ignore_all_settings        = get(g:, 's:vimrc_ignore_all_settings',      s:false)
 
-" if s:vimrc_manage_rtp_manually is s:true, s:vimrc_plugin_on is disabled.
-let s:vimrc_plugin_on = s:vimrc_manage_rtp_manually == s:true ? s:false : s:vimrc_plugin_on
 
-" nil variables
-" Usage:
-" if exists('s:vimrc_nil_dummy_variables')
-"   execute ...
-" This variable is used to disable the feature intentionally.
-unlet! s:vimrc_nil_dummy_variables
 
 function! s:vimrc_environment()
   let env = {}
@@ -119,22 +99,11 @@ function! s:vimrc_environment()
   return env
 endfunction
 
+
+
+
 " s:env is an environment variable in vimrc
 let s:env = s:vimrc_environment()
-
-
-
-
-" Depelopment for Vim plugin {{{2
-if len(findfile("Vimpfile", ".;")) > 0
-  let s:vimrc_plugin_on = s:false
-  set runtimepath&
-  execute "set runtimepath+=" . s:cwd
-  execute "set runtimepath+=" . s:cwd . "/.vimp"
-  for s:plugin in split(glob(s:cwd . "/.vimp/*"), '\n')
-    execute 'set runtimepath+=' . s:plugin
-  endfor
-endif
 
 
 
@@ -152,9 +121,7 @@ endif
 
 " Add neobundle to runtimepath.
 if has('vim_starting') && isdirectory($NEOBUNDLEPATH)
-  if s:vimrc_plugin_on == s:true
-    set runtimepath+=$NEOBUNDLEPATH
-  endif
+  set runtimepath+=$NEOBUNDLEPATH
 endif
 
 
@@ -274,19 +241,21 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   "NeoBundle 'rhysd/github-complete.vim'
   "NeoBundle 'junegunn/fzf'
   "NeoBundle 'junegunn/fzf.vim'
-
   "NeoBundle 'fatih/vim-hclfmt'
+
 
   " Japanese help
   "NeoBundle 'vim-jp/vimdoc-ja'
   " Vital
   "NeoBundle 'vim-jp/vital.vim'
 
+
   " Colorschemes -----------   ???
-  NeoBundle 'b4b4r07/solarized.vim', { "base" : $HOME."/.vim/colors" }
-  NeoBundle 'nanotech/jellybeans.vim', { "base" : $HOME."/.vim/colors" }
-  NeoBundle 'tomasr/molokai', { "base" : $HOME."/.vim/colors" }
-  NeoBundle 'w0ng/vim-hybrid', { "base" : $HOME."/.vim/colors" }
+  "NeoBundle 'b4b4r07/solarized.vim', { "base" : $HOME."/.vim/colors" }
+  "NeoBundle 'nanotech/jellybeans.vim', { "base" : $HOME."/.vim/colors" }
+  "NeoBundle 'tomasr/molokai', { "base" : $HOME."/.vim/colors" }
+  "NeoBundle 'w0ng/vim-hybrid', { "base" : $HOME."/.vim/colors" }
+
 
   " Disable plugins
   if !has('gui_running')
@@ -294,10 +263,6 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   endif
   "NeoBundleDisable mru.vim
   "NeoBundleDisable vim-buftabs
-
-  " Manually manage rtp
-  "NeoBundle 'vim-mru', {'type' : 'nosync', 'base' : '~/.vim/manual'}
-  "NeoBundle 'vim-curbuf', {'type' : 'nosync', 'base' : '~/src/github.com/b4b4r07'}
 
   call neobundle#end()
 
@@ -344,14 +309,10 @@ else
     echomsg 'Finish!'
   endfunction
 
-  if s:vimrc_suggest_neobundleinit == s:true
-    autocmd! VimEnter * redraw
-          \ | echohl WarningMsg
-          \ | echo "You should do ':NeoBundleInit' at first!"
-          \ | echohl None
-  else
-    NeoBundleInit
-  endif
+  autocmd! VimEnter * redraw
+        \ | echohl WarningMsg
+        \ | echo "You should do ':NeoBundleInit' at first!"
+        \ | echohl None
 endif
 "}}}
 
@@ -359,11 +320,6 @@ endif
 
 " nessesary
 filetype plugin indent on
-
-if s:vimrc_ignore_all_settings == s:true
-  finish
-endif
-
 
 
 
