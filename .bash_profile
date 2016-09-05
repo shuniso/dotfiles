@@ -11,7 +11,6 @@ fi
 PS1="\W \$ "
 
 PATH=$PATH:$HOME/bin
-export PATH
 
 LANG=ja_JP.UTF-8
 export LANG
@@ -21,14 +20,16 @@ export LC_CTYPE=$LANG
 LIBDIR=/usr/local/gcc-4.9.3/lib/../lib64
 export LD_LIBRARY_PATH=$LIBDIR
 export LD_RUN_PATH=$LIBDIR
-export PATH=/usr/local/gcc-4.9.3/bin:$PATH
+PATH=/usr/local/gcc-4.9.3/bin:$PATH
 
 # --- PATHs
 NODEBREW_HOME=$HOME/.nodebrew/current/bin
-export PATH=$NODEBREW_HOME:$PATH
+PATH=$NODEBREW_HOME:$PATH
 
-export PATH="$HOME/.anyenv/bin:$PATH"
+PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
+
+export PATH=$PATH
 
 # --- alias
 alias vi='vim'
@@ -49,3 +50,15 @@ peco-select-history() {
     READLINE_POINT=${#l}
 }
 bind -x '"\C-r": peco-select-history'
+
+
+for i in "$HOME"/.keys/*.sh
+do
+    if [ -f "$i" ]; then
+        source $i
+    else
+        continue
+    fi
+done
+
+

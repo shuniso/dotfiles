@@ -12,3 +12,4 @@ bin/*
 .vim/undo
 .vim/view
 
+.keys/*.sh
