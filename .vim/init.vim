@@ -157,13 +157,16 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
     NeoBundleLazy 'Shougo/neocomplcache.vim'
   endif
 
-  "NeoBundle 'Shougo/unite-outline'
-  "NeoBundle 'Shougo/unite-help'
+  NeoBundle 'Shougo/unite-outline'
+  NeoBundle 'Shougo/unite-help'
   "NeoBundle 'Shougo/neomru.vim'
   "NeoBundle 'Shougo/vimfiler'
-  "NeoBundle 'Shougo/vimshell'
+  NeoBundle 'Shougo/vimshell'
   "NeoBundle 'Shougo/neosnippet'
   "NeoBundle 'Shougo/neosnippet-snippets'
+  "
+  NeoBundle 'scrooloose/nerdtree'
+  "
   "NeoBundle 'glidenote/memolist.vim'
   "NeoBundle 'severin-lemaignan/vim-minimap'
   "NeoBundle 'thinca/vim-scouter'
@@ -252,6 +255,10 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
 
   NeoBundle 'slashmili/alchemist.vim'
   NeoBundle 'elixir-lang/vim-elixir'
+  NeoBundle 'BjRo/vim-extest' " A vim plugin for running elixir tests
+  NeoBundle 'mattreduce/vim-mix'
+
+  NeoBundle "tpope/vim-endwise"
 
   " Japanese help
   "NeoBundle 'vim-jp/vimdoc-ja'
@@ -272,6 +279,8 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   endif
   "NeoBundleDisable mru.vim
   "NeoBundleDisable vim-buftabs
+
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
   call neobundle#end()
 
