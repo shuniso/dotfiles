@@ -369,3 +369,6 @@ endfunction
 function! s:neobundled(bundle)
   return s:bundled(a:bundle) && neobundle#tap(a:bundle)
 endfunction
+
+
+

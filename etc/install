@@ -282,30 +282,10 @@ is_git_repo() {
     return $?
 }
 
-# is_screen_running returns true if GNU screen is running
-is_screen_running() {
-    [ ! -z "$STY" ]
-}
-
-# is_tmux_runnning returns true if tmux is running
-is_tmux_runnning() {
-    [ ! -z "$TMUX" ]
-}
-
-# is_screen_or_tmux_running returns true if GNU screen or tmux is running
-is_screen_or_tmux_running() {
-    is_screen_running || is_tmux_runnning
-}
-
 # shell_has_started_interactively returns true if the current shell is
 # running from command line
 shell_has_started_interactively() {
     [ ! -z "$PS1" ]
-}
-
-# is_ssh_running returns true if the ssh deamon is available
-is_ssh_running() {
-    [ ! -z "$SSH_CLIENT" ]
 }
 
 # is_debug returns true if $DEBUG is set
@@ -445,20 +425,7 @@ if [ -z "${DOTPATH:-}" ]; then
 fi
 
 DOTFILES_GITHUB="https://github.com/shuniso/dotfiles.git"; export DOTFILES_GITHUB
-
 # shellcheck disable=SC1078,SC1079,SC2016
-dotfiles_logo='
-      | |     | |  / _(_) |           
-    __| | ___ | |_| |_ _| | ___  ___  
-   / _` |/ _ \| __|  _| | |/ _ \/ __| 
-  | (_| | (_) | |_| | | | |  __/\__ \ 
-   \__,_|\___/ \__|_| |_|_|\___||___/ 
-  *** WHAT IS INSIDE? ***
-  1. Download https://github.com/shuniso/dotfiles.git
-  2. Symlinking dot files to your home directory
-  3. Execute all sh files within `etc/init/` (optional)
-'
-
 dotfiles_download() {
     if [ -d "$DOTPATH" ]; then
         log_fail "$DOTPATH: already exists"
