@@ -1,3 +1,13 @@
+if [[ -f ~/.path ]]; then
+    source ~/.path
+else
+    export DOTPATH="${0:A:t}"
+fi
+export VITAL_PATH="$DOTPATH/etc/lib/vital.sh"
+if [[ -f $VITAL_PATH ]]; then
+    source "$VITAL_PATH"
+fi
+
 export LANGUAGE="ja_JP.UTF-8"
 export LANG="${LANGUAGE}"
 export LC_ALL="${LANGUAGE}"
@@ -154,7 +164,17 @@ setopt hist_reduce_blanks
 setopt extended_glob
 
 function peco-history-selection() {
-    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    case "$(get_os)" in
+        osx)
+            BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+	    ;;
+        linux)
+            BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+	    ;;
+        *)
+            BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+	    ;;
+    esac
     CURSOR=$#BUFFER
     zle reset-prompt
 }
