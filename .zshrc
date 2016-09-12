@@ -37,14 +37,17 @@ eval "$(anyenv init -)"
 
 export PATH=$PATH
 
-echo $SHELL
-
-for i in "$HOME"/.keys/*.sh
-do
-    if [ -f "$i" ]; then
-        source $i
-    else
-        continue
+KEYDIR=$HOME/.keys
+if [ -e $KEYDIR ]; then
+    if ls $KEYDIR/*.sh > /dev/null 2>&1 
+    then
+        for i in "$HOME"/.keys/*.sh
+        do
+            if [ -f "$i" ]; then
+                source $i
+            else
+                continue
+            fi
+        done
     fi
-done
-echo $(get_os)
+fi
