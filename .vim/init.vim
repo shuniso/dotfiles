@@ -280,8 +280,6 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   "NeoBundleDisable mru.vim
   "NeoBundleDisable vim-buftabs
 
-  nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
   call neobundle#end()
 
   " Check.
@@ -334,10 +332,6 @@ else
 endif
 "}}}
 
-
-
-" nessesary
-filetype plugin indent on
 
 
 
