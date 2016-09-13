@@ -51,3 +51,8 @@ if [ -e $KEYDIR ]; then
         done
     fi
 fi
+
+# Indipendent PATH File
+if [ -e $HOME/.my_profile ]; then
+	source $HOME/.my_profile
+fi

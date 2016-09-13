@@ -304,7 +304,7 @@ else
     cd $VIMBUNDLE
 
     if executable('git')
-      call system('git clone git://github.com/Shougo/neobundle.vim')
+      call system('git clone https://github.com/Shougo/neobundle.vim')
       if v:shell_error
         throw 'neobundleinit: Git error.'
       endif
