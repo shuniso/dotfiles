@@ -18,6 +18,18 @@ endif
 " Settings
 "
 set nu
+set backspace=indent,eol,start
+set hlsearch
+set ruler
+set number
+set noswapfile
+set title
+set incsearch
+set wildmenu wildmode=list:full
+
+syntax enable
+set background=dark
+colorscheme solarized
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 

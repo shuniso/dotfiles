@@ -159,14 +159,19 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
 
   NeoBundle 'Shougo/unite-outline'
   NeoBundle 'Shougo/unite-help'
-  "NeoBundle 'Shougo/neomru.vim'
+  NeoBundle 'Shougo/neomru.vim'
   "NeoBundle 'Shougo/vimfiler'
   NeoBundle 'Shougo/vimshell'
   "NeoBundle 'Shougo/neosnippet'
   "NeoBundle 'Shougo/neosnippet-snippets'
-  "
+ 
   NeoBundle 'scrooloose/nerdtree'
-  "
+  NeoBundle 'mattn/emmet-vim'
+  NeoBundle 'surround.vim'
+  NeoBundle 'taichouchou2/html5.vim'
+  NeoBundle 'hail2u/vim-css3-syntax'
+  NeoBundle 'vim-javascript'
+
   "NeoBundle 'glidenote/memolist.vim'
   "NeoBundle 'severin-lemaignan/vim-minimap'
   "NeoBundle 'thinca/vim-scouter'
@@ -271,7 +276,7 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   "NeoBundle 'nanotech/jellybeans.vim', { "base" : $HOME."/.vim/colors" }
   "NeoBundle 'tomasr/molokai', { "base" : $HOME."/.vim/colors" }
   "NeoBundle 'w0ng/vim-hybrid', { "base" : $HOME."/.vim/colors" }
-
+  NeoBundle 'altercation/vim-colors-solarized'
 
   " Disable plugins
   if !has('gui_running')
