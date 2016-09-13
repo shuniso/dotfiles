@@ -184,9 +184,22 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-function check-color() {
+function color-list() {
     for c in {000..255}; do
 	echo -n "\e[38;5;${c}m $c" ;
         [ $(($c%16)) -eq 15 ]
     done;
+}
+
+function ssh() {
+  if [[ -n $(printenv TMUX) ]]
+  then
+    local window_name=$(tmux display -p '#{window_name}')
+    tmux rename-window -- "$@[-1]" # zsh specified
+    # tmux rename-window -- "${!#}" # for bash
+    command ssh $@
+    tmux rename-window $window_name
+  else
+    command ssh $@
+  fi
 }
