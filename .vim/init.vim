@@ -259,6 +259,7 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   NeoBundle 'mattreduce/vim-mix'
 
   NeoBundle "tpope/vim-endwise"
+  NeoBundle "kana/vim-submode"
 
   " Japanese help
   "NeoBundle 'vim-jp/vimdoc-ja'
