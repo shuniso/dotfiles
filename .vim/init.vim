@@ -208,6 +208,7 @@ if stridx(&runtimepath, $NEOBUNDLEPATH) != -1
   "NeoBundle 'tpope/vim-surround'
   "NeoBundle 'tpope/vim-repeat'
   NeoBundle 'tpope/vim-markdown'
+  NeoBundle 'shime/vim-livedown'
   "NeoBundle 'tpope/vim-fugitive'
   "NeoBundle 'osyo-manga/vim-anzu'
   "NeoBundle 'cohama/lexima.vim'

@@ -3,7 +3,6 @@
 .*secret
 .config/*
 !.config/fish
-bin/*
 
 .vim/backup
 .vim/bundle

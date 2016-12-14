@@ -37,6 +37,8 @@ eval "$(anyenv init -)"
 
 export PATH=$PATH
 
+export PATH=$HOME/bin/my-util:$PATH
+
 KEYDIR=$HOME/.keys
 if [ -e $KEYDIR ]; then
     if ls $KEYDIR/*.sh > /dev/null 2>&1 

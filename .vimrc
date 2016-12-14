@@ -29,7 +29,7 @@ set wildmenu wildmode=list:full
 
 syntax enable
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 

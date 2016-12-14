@@ -40,25 +40,25 @@ SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
 VIMODE='[i]'
 function zle-line-init zle-keymap-select {
  VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
- RPROMPT=$DIR$VCS$VIMODE
+ RPROMPT=$DIR$VIMODE
  zle reset-prompt
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-autoload -Uz vcs_info
-zstyle ':vcs_info:*' formats '%F{green}(%b)%f'
-zstyle ':vcs_info:*' actionformats '%F{red}(%b|%a)%f'
-
-VCS=' '
-function _update_prompt(){
-    LANG=ja_JP.UTF-8 vcs_info
-    VCS="${vcs_info_msg_0_} "
-    DIR="%F{green}[%~]%f "
-    RPROMPT=$DIR$VCS$VIMODE
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook precmd _update_prompt
+#autoload -Uz vcs_info
+#zstyle ':vcs_info:*' formats '%F{green}(%b)%f'
+#zstyle ':vcs_info:*' actionformats '%F{red}(%b|%a)%f'
+#
+#VCS=' '
+#function _update_prompt(){
+#    LANG=ja_JP.UTF-8 vcs_info
+#    VCS="${vcs_info_msg_0_} "
+#    DIR="%F{green}[%~]%f "
+#    RPROMPT=$DIR$VCS$VIMODE
+#}
+#autoload -Uz add-zsh-hook
+#add-zsh-hook precmd _update_prompt
 
 ### Ls Color ###
 # 色の設定
