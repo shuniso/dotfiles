@@ -2,13 +2,6 @@
 
 echo "start"
 
-function install() {
-        dir=`pwd`
-        scp grop@tspujml1:/home/grop/s-isozaki/game/out/st4100/release/STBGame.apk ${dir}/
-        adb install -r ${dir}/STBGame.apk
-        rm ${dir}/STBGame.apk
-}
-
 while :
 do
 	read -p "input... : " -n 1 key
@@ -27,7 +20,6 @@ do
 	fi
 
 	case "$key" in
-		"i" ) install ;;
 		"h" ) adb shell input keyevent 21 ;;
 		$'\x1b\x5b\x44' ) adb shell input keyevent 21 ;;
 		"j" ) adb shell input keyevent 20 ;;
