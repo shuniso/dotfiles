@@ -35,7 +35,15 @@ PATH=$NODEBREW_HOME:$PATH
 PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
-export PATH=$PATH
+# GO PATH
+GOVER="$(cat  ~/.anyenv/envs/goenv/version)"
+GODIR=$HOME/.anyenv/envs/goenv/versions/$GOVER/go
+if [ ! -e $GODIR ]; then
+       mkdir $GODIR
+       echo "make new godir: $GODIR"
+fi
+export GOPATH=$GODIR
+
 
 export PATH=$HOME/bin/my-util:$PATH
 
@@ -58,3 +66,5 @@ fi
 if [ -e $HOME/.my_profile ]; then
 	source $HOME/.my_profile
 fi
+
+eval "$(direnv hook zsh)"
