@@ -1,0 +1,12 @@
+function s3syncUp() {
+	if [[ -e $S3_LOCAL ]]; then
+		echo "start s3sync: ${S3_LOCAL} -> ${S3_REMOTE} $1"
+		aws s3 sync $S3_LOCAL $S3_REMOTE $1
+	fi
+}
+function s3syncDown() {
+	if [[ -e $S3_LOCAL ]]; then
+		echo "start s3sync: ${S3_REMOTE} -> ${S3_LOCAL} $1"
+		aws s3 sync $S3_LOCAL $S3_REMOTE $1
+	fi
+}

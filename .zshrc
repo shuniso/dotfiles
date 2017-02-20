@@ -10,19 +10,23 @@ fi
 
 typeset -U path cdpath fpath manpath
 
-## sudo用のpathを設定
+#######
+# sudo用のpathを設定
+#######
 typeset -xT SUDO_PATH sudo_path
 typeset -U sudo_path
 sudo_path=({/usr/local,/usr,}/sbin(N-/))
 
-### pathを設定
+#######
+# pathを設定
+#######
 path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
-
-
 # Add ~/bin to PATH
 PATH=~/bin:$PATH
 
+#######
 # GCC
+#######
 LIBDIR=/usr/local/gcc-4.9.3/lib/../lib64
 export LD_LIBRARY_PATH=$LIBDIR
 export LD_RUN_PATH=$LIBDIR
@@ -43,28 +47,17 @@ if [ ! -e $GODIR ]; then
        echo "make new godir: $GODIR"
 fi
 export GOPATH=$GODIR
-
-
 export PATH=$HOME/bin/my-util:$PATH
 
-KEYDIR=$HOME/.keys
-if [ -e $KEYDIR ]; then
-    if ls $KEYDIR/*.sh > /dev/null 2>&1 
-    then
-        for i in "$HOME"/.keys/*.sh
-        do
-            if [ -f "$i" ]; then
-                source $i
-            else
-                continue
-            fi
-        done
-    fi
-fi
-
-# Indipendent PATH File
-if [ -e $HOME/.my_profile ]; then
-	source $HOME/.my_profile
-fi
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 
 eval "$(direnv hook zsh)"
+
+
+if [[ -f ~/.zshrc.local ]]; then
+    source ~/.zshrc.local
+fi
+
+if [[ -f ~/.zshrc.func ]]; then
+    source ~/.zshrc.func
+fi

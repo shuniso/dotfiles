@@ -1,13 +1,13 @@
-if [[ -f ~/.path ]]; then
-    source ~/.path
-else
-    export DOTPATH="${0:A:t}"
-fi
-export VITAL_PATH="$DOTPATH/etc/lib/vital.sh"
-if [[ -f $VITAL_PATH ]]; then
-    source "$VITAL_PATH"
-fi
-
+#if [[ -f ~/.path ]]; then
+#    source ~/.path
+#else
+#    export DOTPATH="${0:A:t}"
+#fi
+#export VITAL_PATH="$DOTPATH/etc/lib/vital.sh"
+#if [[ -f $VITAL_PATH ]]; then
+#    source "$VITAL_PATH"
+#fi
+#
 export LANGUAGE="ja_JP.UTF-8"
 export LANG="${LANGUAGE}"
 export LC_ALL="${LANGUAGE}"
