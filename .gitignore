@@ -11,9 +11,9 @@
 .vim/undo
 .vim/view
 .vim/.netrwhist
+.vim/dein
 
 .keys/*.sh
 
 *.local
-.vim/dein
 *.swp
