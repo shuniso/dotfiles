@@ -15,5 +15,5 @@
 .keys/*.sh
 
 *.local
-
+.vim/dein
 *.swp
