@@ -1,0 +1,107 @@
+# 基本は github.com のレポジトリーを指定するだけ
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]]
+repo = 'delphinus35/typescript-vim'
+rev  = 'colorize-template-strings'
+
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['vim-airline-themes']
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+
+[[plugins]] 
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+[[plugins]] repo = 'Shougo/context_filetype.vim'
+
+[[plugins]] # toml syntax
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo =  'evidens/vim-twig'
+
+[[plugins]]
+repo =  'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'kana/vim-submode'
+
+# [[plugins]]
+# repo = 
+
+[[plugins]]
+repo = 'surround.vim'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+ 
+[[plugins]]
+repo = 'taichouchou2/html5.vim'
+
+[[plugins]]
+repo = 'hail2u/vim-css3-syntax'
+
+[[plugins]]
+repo = 'vim-javascript'
+
+[[plugins]]
+repo = 'tpope/vim-markdown'
+
+[[plugins]]
+repo = 'shime/vim-livedown'
+
+[[plugins]]
+repo = 'slashmili/alchemist.vim'
+
+[[plugins]]
+repo = 'elixir-lang/vim-elixir'
+
+[[plugins]]
+repo = 'BjRo/vim-extest'
+
+[[plugins]]
+repo = 'mattreduce/vim-mix'
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+
+[[plugins]]
+repo = 'vim-scripts/taglist.vim'
+
+[[plugins]]
+repo = 'osyo-manga/shabadou.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-watchdogs'
+
+[[plugins]]
+repo = 'KazuakiM/neosnippet-snippets'
+[[plugins]]
+repo = 'KazuakiM/vim-qfstatusline'
+
+
+#-  NeoBundle 'Shougo/unite.vim'
+#-  NeoBundle 'Shougo/vimproc', {
+#-  NeoBundle 'Shougo/unite-outline'
+#-  NeoBundle 'Shougo/unite-help'
+#-  NeoBundle 'Shougo/neomru.vim'
+#-  NeoBundle 'Shougo/vimshell'
+

@@ -1,0 +1,343 @@
+# Debug message {{{
+snippet log
+abbr Echo debug helper in console
+	echo('['. __class__ .':'. __function__ .':'. __line__ .']$0:'. print_r($${0}, true) ."\n");
+snippet logg
+abbr Exit Echo debug helper in console
+	echo('['. __class__ .':'. __function__ .':'. __line__ .']$0:'. print_r($${0}, true) ."\n");exit(9);
+snippet logmsg
+abbr Log template
+	'['. __class__ .':'. __function__ .':'. __line__ .']:'
+snippet logbr
+abbr Echo debug helper in HTML
+	echo('['. __class__ .':'. __function__ .':'. __line__ .']$0:'. print_r($${0}, true) .'<br />');
+snippet logfile
+abbr Output logfile debug helper
+	file_put_contents('/tmp/sniplog', '<'.date('Y-m-d H:i:s').'>['. __class__ .':'. __function__ .':'. __line__ .']$0:'. print_r($${0}, true) ."\n",FILE_APPEND|LOCK_EX);
+snippet pd
+abbr Dumb debug helper in HTML
+	echo('<pre>');var_dump($${0:variable});echo('</pre>');
+snippet pdd
+abbr Exit Dumb debug helper in HTML
+	echo('<pre>');var_dump($${0:variable});echo('</pre>');exit(9);
+snippet vd
+abbr dumb debug helper
+	var_dump($${0:variable});
+snippet vdd
+abbr Exit dumb debug helper
+	var_dump($${0:variable});exit(9);
+#}}}
+# Reserved word {{{
+snippet C
+abbr Env variable COOKIE
+	$_COOKIE['${0:key}']
+snippet E
+abbr Env variable ENV
+	$_ENV['${0:key}']
+snippet F
+abbr Env variable FILES
+	$_FILES['${0:key}']
+snippet G
+abbr Env variable GET
+	$_GET['${0:key}']
+snippet P
+abbr Env variable POST
+	$_POST['${0:key}']
+snippet R
+abbr Env variable REQUEST
+	$_REQUEST['${0:key}']
+snippet S
+abbr Env variable SERVER
+	$_SERVER['${0:key}']
+snippet SS
+abbr Env variable SESSION
+	$_SESSION['${0:key}']
+#}}}
+# Language control structures {{{
+snippet inc
+abbr include
+	include '${0:file}';
+snippet inc1
+abbr include_once
+	include_once '${0:file}';
+snippet req
+abbr require
+	require '${0:file}';
+snippet req1
+abbr require_once
+	require_once '${0:file}';
+snippet def
+abbr define
+	define('${1:variable}', ${0:value});
+#}}}
+# Visibility {{{
+snippet public
+abbr Public Visibility
+	public ${1:static }${0}
+snippet protected
+abbr Protected Visibility
+	protected ${1:static }${0}
+snippet private
+abbr Private Visibility
+	private ${1:static }${0}
+#}}}
+# Class {{{
+snippet class
+abbr Class default
+	<?php
+	class `expand("%:r")`
+	{
+		// Class variable {{{
+		//}}}
+	
+		public function __construct(${2}) //{{{
+		{
+			${0:parent::__construct();}
+		} //}}}
+	}
+snippet class_variable
+abbr Class variable
+	// Class variable {{{
+	//}}}
+#}}}
+# Function {{{
+snippet public_function
+abbr Public Function
+	public ${1:static }function ${2}(${3}) //{{{
+	{
+		${0://code...}
+	} //}}}
+snippet protected_function
+abbr Protected Function
+	protected ${1:static }function ${2}(${3}) //{{{
+	{
+		${0://code...}
+	} //}}}
+snippet private_function
+abbr Private_Function
+	private ${1:static }function _${2}(${3}) //{{{
+	{
+		${0://code...}
+	} //}}}
+snippet construct "__construct"
+abbr __construct
+	public function __construct(${1}) //{{{
+	{
+		${0:parent::__construct();}
+	} //}}}
+snippet setter
+abbr Setter
+	public function set${1:camelCase}($${0:value}) //{{{
+	{
+		$this->_$0 = $$0;
+	} //}}}
+snippet getter
+abbr Getter
+	public function get${0:camelCase}() //{{{
+	{
+		return $this->_${1:value};
+	} //}}}
+snippet sgetter
+abbr Setter and Getter
+	public function set${0:camelCase}($${1:value}) //{{{
+	{
+		$this->_$1 = $$1;
+	} //}}}
+	public function get$0() //{{{
+	{
+		return $this->_$1;
+	} //}}}
+snippet gsetter
+abbr Setter and Getter
+	public function set${0:camelCase}($${1:value}) //{{{
+	{
+		$this->_$1 = $$1;
+	} //}}}
+	public function get$0() //{{{
+	{
+		return $this->_$1;
+	} //}}}
+#}}}
+# foreach {{{
+snippet foreach
+abbr foreach array as value
+	foreach ($${1:array} as $${2:value}) {
+		${0://code...}
+	}
+snippet foreachk
+abbr foreach array as key => value
+	foreach ($${1:array} as $${2:key} => $${3:value}) {
+		${0://code...}
+	}
+#}}}
+# for {{{
+snippet for
+abbr for
+	for ($${1:index} = 0; $$1 < ${2}; $$1${3:++}) {
+		${0://code...}
+	}
+#}}}
+# while {{{
+snippet while
+abbr while
+	while (${1:/* condition */}) {
+		${0://code...}
+	}
+#}}}
+# if {{{
+snippet if
+abbr if
+	if (${1:/* condition */}) {
+		${0://code...}
+	}
+snippet else
+abbr else
+	else {
+		${0://code...}
+	}
+snippet elseif
+abbr elseif
+	elseif (${1:/* condition */}) {
+		${0://code...}
+	}
+#}}}
+# switch {{{
+snippet switch
+abbr switch
+	switch ($${1:variable}) {
+	case '${2:/* condition */}':
+		${0://code...}
+		break;
+	default:
+		break;
+	}
+snippet case
+abbr switch - case
+	case '${1:/* condition */}':
+		${0://code...}
+		break;
+#}}}
+# try {{{
+snippet throw
+abbr throw
+	throw new Exception(${0://message...});
+snippet try
+abbr try
+	try {
+		${0://code...}
+	} catch (Exception $e) {
+		$$e->getMessage()
+	}
+snippet finally
+abbr finally
+	finally {
+	}
+#}}}
+# array {{{
+snippet array
+abbr array
+	$${1:array} = [
+		'${2:key}' => ${0:value},];
+snippet array_in
+abbr array_in
+	$${1:array}[] = $${0:value};
+#}}}
+# FILE {{{
+snippet csv
+abbr csv
+	$mp = fopen('php://memory', 'bw+');
+	foreach (${$1:array} as $${2:value}) {
+		fputcsv($mp, $$2, ${3:','}, ${4:'"'});
+	}
+	rewind($mp);
+	${0://$buf = str_replace("\n", "\r\n", stream_get_contents($mp));}
+	$buf = stream_get_contents($mp);
+	fclose($mp);
+
+	$fp = fopen(${5:file}, 'w');
+	fwrite($fp, $buf);
+	fclose($fp);
+#}}}
+# SQL {{{
+snippet sql
+abbr SQL
+	<<<SQL
+	${0:delete space}
+	${1:delete space}SQL;
+snippet select
+abbr SELECT
+	SELECT ${0:colmn}
+snippet from
+abbr FROM
+	FROM ${1:table} AS ${0:abbreviation}
+snippet from_inner
+abbr FROM INNER JOIN
+	FROM ${1:table} AS ${2:abbreviation}
+	INNER JOIN ${3:table} AS ${4:abbreviation}
+	ON $2.${5:condition} = $4.${0:condition}
+snippet from_left
+abbr FROM LEFT JOIN
+	FROM ${1:table} AS ${2:abbreviation}
+	LEFT JOIN ${3:table} AS ${4:abbreviation}
+	ON $2.${5:condition} = $4.${0:condition}
+snippet inner
+abbr INNER JOIN
+	INNER JOIN ${1:table} AS ${2:abbreviation}
+	ON ${0:condition}
+snippet left
+abbr LEFT JOIN
+	LEFT JOIN ${1:table} AS ${2:abbreviation}
+	ON ${0:condition}
+snippet where
+abbr WHERE
+	WHERE ${0:condition}
+snippet and
+abbr AND
+	AND ${0:condition}
+snippet or
+abbr OR
+	OR ${0:condition}
+snippet group_by
+abbr GROUP BY
+	GROUP BY ${0:condition}
+snippet group_concat
+abbr GROUP_CONCAT
+	GROUP_CONCAT(${1:DISTINCT }${2:colmn,colmn}${3: ORDER BY}${4:order_by}${5: SEPARATOR}${6:separator}) AS ${7:abbreviation}
+	GROUP BY ${0:condition}
+snippet limit
+abbr LIMIT
+	LIMIT ${0:condition}
+snippet insert_into
+abbr INSERT INTO
+	INSERT INTO ${1:table} (${0:condition})
+snippet insert_into_select
+abbr INSERT INTO SELECT
+	INSERT INTO ${1:table} (${2:condition})
+		SELECT ${0:condition}
+snippet values
+abbr VALUES
+	VALUES (${0:condition})
+snippet duplicate
+abbr DUPLICATE
+	ON DUPLICATE KEY UPDATE ${0:condition}
+snippet update
+abbr UPDATE SET
+	UPDATE ${1:table} ${2:abbreviation} SET $2.${3:condition}
+snippet update_inner
+abbr UPDATE INNER JOIN SET
+	UPDATE ${1:table} ${2:abbreviation}
+		INNER JOIN ${3:table} AS ${4:abbreviation}
+		ON $2.${5:colmn} = $4.${6:colmn}
+		SET ${7:condition}
+snippet delete
+abbr DELETE
+	DELETE FROM ${1:table}
+		WHERE ${2:condition}
+snippet delete_inner
+abbr DELETE INNER JOIN
+	DELETE ${1:table} FROM $1 AS ${2:abbreviation}
+		INNER JOIN ${3:table} AS ${4:abbreviation}
+		ON $2.${5:colmn} = $4.${6:colmn}
+		WHERE ${7:condition}
+#}}}
+# vim:fdl=0
