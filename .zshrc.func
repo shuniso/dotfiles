@@ -10,3 +10,18 @@ function s3syncDown() {
 		aws s3 sync $S3_LOCAL $S3_REMOTE $1
 	fi
 }
+
+# Decompile Java classes recursively keeping hierarchy
+jadr() {
+ jad -8 -s java -d $2 -r $1/**/*.class
+}
+
+# Decompile Android application
+deapk() {
+  local dst=${${1##*/}%%.*}
+  dst+='.depackaged'
+  unzip $1 -d $dst
+  dex2jar ${dst}/classes.dex
+  unzip ${dst}/classes_dex2jar.jar -d ${dst}/Classes
+  jadr ${dst} ${dst}/src
+}
