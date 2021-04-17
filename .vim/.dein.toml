@@ -48,9 +48,6 @@ repo = 'kana/vim-submode'
 repo = 'mattn/emmet-vim'
  
 [[plugins]]
-# repo = 'taichouchou2/html5.vim'
-
-[[plugins]]
 repo = 'hail2u/vim-css3-syntax'
 
 #[[plugins]]

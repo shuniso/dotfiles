@@ -15,6 +15,9 @@ bindkey -M viins '^H'  backward-delete-char
 bindkey -M viins '^N'  down-line-or-history
 bindkey -M viins '^P'  up-line-or-history
 
+autoload -U promptinit; promptinit
+prompt pure
+
 # PROMPT ---------------
 autoload -U promptinit; promptinit
 prompt pure
