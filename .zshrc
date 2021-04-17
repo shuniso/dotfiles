@@ -24,18 +24,20 @@ path=(~/bin(N-/) /usr/local/bin(N-/) ${path})
 # Add ~/bin to PATH
 PATH=~/bin:$PATH
 
+# Openssl
+PATH=/usr/local/opt/openssl/bin:$PATH
+
 #######
 # GCC
 #######
-LIBDIR=/usr/local/gcc-4.9.3/lib/../lib64
-export LD_LIBRARY_PATH=$LIBDIR
-export LD_RUN_PATH=$LIBDIR
-PATH=/usr/local/gcc-4.9.3/bin:$PATH
+# LIBDIR=/usr/local/gcc-4.9.3/lib/../lib64
+# export LD_LIBRARY_PATH=$LIBDIR
+# export LD_RUN_PATH=$LIBDIR
+# PATH=/usr/local/gcc-4.9.3/bin:$PATH
 
-# PATHs
-NODEBREW_HOME=$HOME/.nodebrew/current/bin
-PATH=$NODEBREW_HOME:$PATH
-
+#######
+# envs
+#######
 PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
@@ -49,15 +51,38 @@ fi
 export GOPATH=$GODIR
 export PATH=$HOME/bin/my-util:$PATH
 
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+# Rust
+export PATH=$HOME/.cargo/bin:$PATH
 
+#####
+
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 eval "$(direnv hook zsh)"
 
 
+ANDROID_SDK=$HOME/Library/Android/sdk
+PATH=$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$PATH
+
+export PATH="/usr/local/sbin:$PATH"
+
+#####
+# 外部設定
+#####
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
 
 if [[ -f ~/.zshrc.func ]]; then
     source ~/.zshrc.func
+fi
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+  compinit
 fi

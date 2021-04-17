@@ -1,13 +1,3 @@
-#if [[ -f ~/.path ]]; then
-#    source ~/.path
-#else
-#    export DOTPATH="${0:A:t}"
-#fi
-#export VITAL_PATH="$DOTPATH/etc/lib/vital.sh"
-#if [[ -f $VITAL_PATH ]]; then
-#    source "$VITAL_PATH"
-#fi
-#
 export LANGUAGE="ja_JP.UTF-8"
 export LANG="${LANGUAGE}"
 export LC_ALL="${LANGUAGE}"
@@ -26,16 +16,8 @@ bindkey -M viins '^N'  down-line-or-history
 bindkey -M viins '^P'  up-line-or-history
 
 # PROMPT ---------------
-#tmp_prompt="[%D{%m/%d %T}]%f $ "
-tmp_prompt=" $ "
-tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
-tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
-tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
-
-PROMPT=$tmp_prompt    # 通常のプロンプト
-PROMPT2=$tmp_prompt2  # セカンダリのプロンプト(コマンドが2行以上の時に表示される)
-RPROMPT=$tmp_rprompt  # 右側のプロンプト
-SPROMPT=$tmp_sprompt  # スペル訂正用プロンプト
+autoload -U promptinit; promptinit
+prompt pure
 
 VIMODE='[i]'
 function zle-line-init zle-keymap-select {
@@ -45,20 +27,6 @@ function zle-line-init zle-keymap-select {
 }
 zle -N zle-line-init
 zle -N zle-keymap-select
-
-#autoload -Uz vcs_info
-#zstyle ':vcs_info:*' formats '%F{green}(%b)%f'
-#zstyle ':vcs_info:*' actionformats '%F{red}(%b|%a)%f'
-#
-#VCS=' '
-#function _update_prompt(){
-#    LANG=ja_JP.UTF-8 vcs_info
-#    VCS="${vcs_info_msg_0_} "
-#    DIR="%F{green}[%~]%f "
-#    RPROMPT=$DIR$VCS$VIMODE
-#}
-#autoload -Uz add-zsh-hook
-#add-zsh-hook precmd _update_prompt
 
 ### Ls Color ###
 # 色の設定
@@ -113,6 +81,9 @@ export CORRECT_IGNORE_FILE='.*'
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 export WORDCHARS='*?.[]~&;!#$%^(){}<>'
 
+########
+# History
+########
 # History file and its size
 export HISTFILE=~/.zsh_history
 export HISTSIZE=1000000
@@ -121,10 +92,6 @@ export SAVEHIST=1000000
 # fzf - command-line fuzzy finder (https://github.com/junegunn/fzf)
 export FZF_DEFAULT_OPTS="--extended --ansi --multi"
 
-# Cask
-#export HOMEBREW_CASK_OPTS="--appdir=/Applications"
-
-# History
 # History file
 export HISTFILE=~/.zsh_history
 # History size in memory
@@ -166,23 +133,14 @@ setopt extended_glob
 setopt nonomatch
 
 function peco-history-selection() {
-    case "$(get_os)" in
-        osx)
-            BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
-	    ;;
-        linux)
-            BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
-	    ;;
-        *)
-            BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
-	    ;;
-    esac
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
 
 zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+bindkey '^r' peco-history-selection
+
 
 function color-list() {
     for c in {000..255}; do
@@ -203,3 +161,8 @@ function ssh() {
     command ssh $@
   fi
 }
+
+# zsh completions
+fpath=(/usr/local/share/zsh-completions $fpath)
+autoload -U compinit
+compinit -u

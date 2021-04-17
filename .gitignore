@@ -17,3 +17,6 @@
 
 *.local
 *.swp
+
+bin/*
+my-util/*

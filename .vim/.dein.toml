@@ -41,20 +41,20 @@ repo = 'kana/vim-submode'
 # [[plugins]]
 # repo = 
 
-[[plugins]]
-repo = 'surround.vim'
+#[[plugins]]
+#repo = 'surround.vim'
 
 [[plugins]]
 repo = 'mattn/emmet-vim'
  
 [[plugins]]
-repo = 'taichouchou2/html5.vim'
+# repo = 'taichouchou2/html5.vim'
 
 [[plugins]]
 repo = 'hail2u/vim-css3-syntax'
 
-[[plugins]]
-repo = 'vim-javascript'
+#[[plugins]]
+#repo = 'vim-javascript'
 
 [[plugins]]
 repo = 'tpope/vim-markdown'
