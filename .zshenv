@@ -15,22 +15,6 @@ bindkey -M viins '^H'  backward-delete-char
 bindkey -M viins '^N'  down-line-or-history
 bindkey -M viins '^P'  up-line-or-history
 
-autoload -U promptinit; promptinit
-prompt pure
-
-# PROMPT ---------------
-autoload -U promptinit; promptinit
-prompt pure
-
-VIMODE='[i]'
-function zle-line-init zle-keymap-select {
- VIMODE="${${KEYMAP/vicmd/[n]}/(main|viins)/[i]}"
- RPROMPT=$DIR$VIMODE
- zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
-
 ### Ls Color ###
 # 色の設定
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -164,8 +148,3 @@ function ssh() {
     command ssh $@
   fi
 }
-
-# zsh completions
-fpath=(/usr/local/share/zsh-completions $fpath)
-autoload -U compinit
-compinit -u

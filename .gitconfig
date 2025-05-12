@@ -1,6 +1,6 @@
 [user]
-	email = user@example.com
-	name  = shuniso
+	email = s.isozaki.dev@gmail.com
+	name  = Shunsuke Isozaki
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	precomposeunicode = true

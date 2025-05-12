@@ -25,3 +25,5 @@ deapk() {
   unzip ${dst}/classes_dex2jar.jar -d ${dst}/Classes
   jadr ${dst} ${dst}/src
 }
+
+alias saveclipimg='save_dir=${CLIP_IMG_DIR:-$HOME/Downloads}; ts=$(date +%Y%m%d%H%M); n=0; while :; do suffix=$([[ $n -eq 0 ]] && echo "" || echo "_$n"); filepath="$save_dir/${ts}${suffix}.png"; [[ -e "$filepath" ]] || break; ((n++)); done; pngpaste "$filepath" && echo "Saved to $filepath"'
